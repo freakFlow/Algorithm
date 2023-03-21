@@ -1,10 +1,10 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Main {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringBuilder sb = new StringBuilder();
-	static StringTokenizer st;
+	static StringTokenizer st;	
 	
 	static int T;
 	static int a, b, c;
@@ -18,18 +18,11 @@ public class Main {
 			b = Integer.parseInt(st.nextToken());
 			c = Integer.parseInt(st.nextToken());
 			
-			int cnt = 0;
-			for(int i=1; i<=a; i++) {
-				for(int j=1; j<=b; j++) {
-					for(int k=1; k<=c; k++) {
-						if(i % j == j % k && i % j == k % i) cnt++;
-					}
-				}
-			}
-			sb.append(cnt).append('\n');
+			sb.append(Math.min(a, Math.min(b, c))).append('\n');
 		}
 		
 		System.out.println(sb);
 	}
+	
 	
 }
