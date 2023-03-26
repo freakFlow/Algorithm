@@ -7,7 +7,7 @@ public class Main {
 	static StringTokenizer st;	
 	
 	static int M;
-	static boolean[] set = new boolean[21];
+	static int set;
 	
 	public static void main(String[] args) throws IOException {
 		
@@ -15,30 +15,25 @@ public class Main {
 		
 		for(int i=0; i<M; i++) {
 			st = new StringTokenizer(br.readLine());
-			String cmd = st.nextToken();
-			int num = 0;
-			if(st.hasMoreTokens()) {
-				num = Integer.parseInt(st.nextToken());
-			}
 			
-			switch(cmd) {
+			switch(st.nextToken()) {
 			case "add":
-				set[num] = true;
+				set |= 1 << Integer.parseInt(st.nextToken());
 				break;
 			case "remove":
-				set[num] = false;
+				set &= ~(1 << Integer.parseInt(st.nextToken()));
 				break;
 			case "check":
-				sb.append(set[num] ? 1 : 0).append('\n');
+				sb.append(((set & (1 << Integer.parseInt(st.nextToken()))) > 0) ? 1 : 0).append('\n');
 				break;
 			case "toggle":
-				set[num] = !set[num];
+				set ^= 1 << Integer.parseInt(st.nextToken());
 				break;
 			case "all":
-				setAll(true);
+				set = 2097151; // 0b 1_1111_1111_1111_1111_1111
 				break;
 			case "empty":
-				setAll(false);
+				set = 0;
 				break;
 			}
 		}
@@ -46,9 +41,4 @@ public class Main {
 		System.out.println(sb);
 	}
 	
-	static void setAll(boolean b) {
-		for(int i=1; i<set.length; i++) {
-			set[i] = b;
-		}
-	}
 }
