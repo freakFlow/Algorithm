@@ -8,7 +8,7 @@ public class Main {
 	
 	static final int SIZE = 7;
 	static int T;
-	static int[] nums = new int[SIZE];
+	static int num;
 	static int sum;
 	static int min;
 	
@@ -20,10 +20,12 @@ public class Main {
 			sum = 0;
 			min = Integer.MAX_VALUE;
 			for(int i=0; i<SIZE; i++) {
-				nums[i] = Integer.parseInt(st.nextToken());
-				if(nums[i] % 2 == 0) {
-					sum += nums[i];
-					min = Math.min(min, nums[i]);
+				num = Integer.parseInt(st.nextToken());
+				if(num % 2 == 0) {
+					sum += num;
+					if(num < min) {
+						min = num;
+					}
 				}
 			}
 			sb.append(sum).append(' ').append(min).append('\n');
