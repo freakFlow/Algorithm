@@ -12,20 +12,18 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		
-		n = Integer.parseInt(br.readLine());
+		n = nextInt();
 		inputs = new int[n+1];
-		st = new StringTokenizer(br.readLine());
 		for(int i=1; i<inputs.length; i++) {
-			inputs[i] = Integer.parseInt(st.nextToken());
+			inputs[i] = nextInt();
 		}
 		
-		m = Integer.parseInt(br.readLine());
+		m = nextInt();
 		for(int i=0; i<m; i++) {
-			st = new StringTokenizer(br.readLine());
-			String oper = st.nextToken();
-			int left = Integer.parseInt(st.nextToken());
-			int right = Integer.parseInt(st.nextToken());
-			if(oper.equals("1")) {
+			int oper = nextInt();
+			int left = nextInt();
+			int right = nextInt();
+			if(oper == 1) {
 				for(int j=left; j<=right; j++) {
 					inputs[j] = inputs[j] * inputs[j] % 2010;
 				}
@@ -42,5 +40,33 @@ public class Main {
 		System.out.println(sb);
 	}
 	
+	static final int BUFFER_SIZE = 1 << 10;
+	static byte[] buffer = new byte[BUFFER_SIZE];
+	static int length, idx;
+	
+	static int nextInt() throws IOException {
+		int num = 0;
+		byte b = read();
+		while(b<=32) b = read();
+		do {
+			num = num * 10 + b - '0';
+		}while(isNumber(b = read()));
+		
+		return num;
+	}
+	
+	static boolean isNumber(byte b) {
+		return b>='0' && b<='9';
+	}
+	
+	static byte read() throws IOException {
+		if(length == idx) {
+			length = System.in.read(buffer, idx = 0, BUFFER_SIZE);
+			if(length == -1) {
+				buffer[0] = -1;
+			}
+		}
+		return buffer[idx++];
+	}
 	
 }
