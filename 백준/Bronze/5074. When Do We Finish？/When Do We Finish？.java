@@ -21,10 +21,19 @@ public class Main {
 			
 			if(sh + sm + dh + dm == 0) break;
 			
-			int total = sh * 60 + sm + dh * 60 + dm;
-			day = total / 60 / 24;
-			sh = total / 60 % 24;
-			sm = total % 60;
+			sm += dm;
+			if(sm >= 60) {
+				sh++;
+				sm -= 60;
+			}
+			
+			sh += dh;
+			if(sh >= 24) {
+				day = sh / 24;
+				sh %= 24;
+			}else{
+                day = 0;
+            }
 			
 			sb.append(String.format("%02d:%02d", sh, sm));
 			if(day > 0) {
