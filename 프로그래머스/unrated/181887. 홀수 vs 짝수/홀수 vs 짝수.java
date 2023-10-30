@@ -1,0 +1,17 @@
+class Solution {
+    public int solution(int[] num_list) {
+        int sum1 = 0;
+        int sum2 = 0;
+        int length = num_list.length;
+        
+        for(int i=0; i<length; i++){
+            if(i % 2 == 0){
+                sum1 += num_list[i];
+            }else{
+                sum2 += num_list[i];
+            }
+        }
+        
+        return (sum1 > sum2) ? sum1 : sum2;
+    }
+}
