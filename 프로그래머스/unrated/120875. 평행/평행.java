@@ -16,7 +16,7 @@ class Solution {
                     }
                 }
                 
-                if(Math.abs(angle1 - (double)y / x) < Math.pow(10, -15)) return 1;
+                if(Math.abs(angle1 - (double)y / x) < Math.pow(10, -10)) return 1;
             }
         }
         
