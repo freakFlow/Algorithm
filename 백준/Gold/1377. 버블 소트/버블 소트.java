@@ -7,28 +7,29 @@ public class Main {
     static StringTokenizer st;
 
     static int N;
-    static int[][] arr;
+    static int[] arr;
+    static int[] count;
     static int max;
 
     public static void main(String[] args) throws IOException{
         N = Integer.parseInt(br.readLine());
-        arr = new int[N][2];
+        arr = new int[N];
+        count = new int[1000001];
         max = Integer.MIN_VALUE;
 
         for(int i=0; i<N; i++){
-            arr[i][0] = Integer.parseInt(br.readLine());
-            arr[i][1] = i;
+            arr[i] = Integer.parseInt(br.readLine());
+            count[arr[i]]++;
         }
 
-        Arrays.sort(arr, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return Integer.compare(o1[0], o2[0]);
-            }
-        });
+        int sum = 0;
+        for(int i=0; i<count.length; i++){
+            sum += count[i];
+            count[i] = sum;
+        }
 
         for(int i=0; i<N; i++){
-            max = Math.max(max, arr[i][1] - i);
+            max = Math.max(max, i - (count[arr[i]] - 1));
         }
 
         System.out.print(max + 1);
