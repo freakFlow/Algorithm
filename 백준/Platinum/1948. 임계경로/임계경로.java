@@ -11,7 +11,7 @@ public class Main {
     static int[] inDegree;
     static int[] answer;
     static Queue<Integer> queue;
-    static boolean[][] visited;
+    static boolean[] visited;
     static int start, end;
     static int count;
 
@@ -37,7 +37,7 @@ public class Main {
         inDegree = new int[N + 1];
         answer = new int[N + 1];
         queue = new ArrayDeque<>();
-        visited = new boolean[N + 1][N + 1];
+        visited = new boolean[N + 1];
 
         for(int m=0; m<M; m++){
             st = new StringTokenizer(br.readLine());
@@ -67,14 +67,17 @@ public class Main {
         }
 
         queue.add(end);
+        visited[end] = true;
         while(!queue.isEmpty()){
             int current = queue.poll();
 
             for(Node child : rGraph[current]){
-                if(answer[current] - child.weight == answer[child.city] && !visited[current][child.city]){
+                if(answer[current] - child.weight == answer[child.city]){
                     count++;
-                    visited[current][child.city] = true;
-                    queue.add(child.city);
+                    if(!visited[child.city]){
+                        visited[child.city] = true;
+                        queue.add(child.city);
+                    }
                 }
             }
         }
