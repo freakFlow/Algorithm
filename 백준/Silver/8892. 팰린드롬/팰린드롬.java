@@ -22,12 +22,12 @@ public class Main {
             }
 
             boolean findIt = false;
+            StringBuilder concat = new StringBuilder();
 
             for(int i=0; i<K; i++){
                 for(int j=0; j<K; j++){
                     if(i == j) continue;
 
-                    StringBuilder concat = new StringBuilder();
                     concat.append(words[i]).append(words[j]);
 
                     if(isPalindrome(concat.toString())){
@@ -35,6 +35,8 @@ public class Main {
                         sb.append(concat.toString()).append('\n');
                         break;
                     }
+
+                    concat.setLength(0);
                 }
 
                 if(findIt) break;
