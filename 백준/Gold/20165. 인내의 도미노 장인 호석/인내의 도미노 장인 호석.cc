@@ -46,23 +46,22 @@ int main() {
         cin >> sr >> sc >> dir;
         d = toDir(dir);
 
-        if(!toppled[sr][sc]){
-            q.push({sr, sc});
+        q.push({sr, sc});
 
-            while(!q.empty()){
-                int r = q.front().first;
-                int c = q.front().second;
-                q.pop();
+        while(!q.empty()){
+            int r = q.front().first;
+            int c = q.front().second;
+            q.pop();
 
-                toppled[r][c] = true;
-                score++;
+            if(toppled[r][c]) continue;
+            toppled[r][c] = true;
+            score++;
 
-                for(int k=1; k<arr[r][c]; k++){
-                    int nr = r + dr[d] * k;
-                    int nc = c + dc[d] * k;
+            for(int k=1; k<arr[r][c]; k++){
+                int nr = r + dr[d] * k;
+                int nc = c + dc[d] * k;
 
-                    if(isIn(nr, nc) && !toppled[nr][nc]) q.push({nr, nc});
-                }
+                if(isIn(nr, nc) && !toppled[nr][nc]) q.push({nr, nc});
             }
         }
 
